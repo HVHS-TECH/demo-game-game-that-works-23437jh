@@ -3,7 +3,7 @@
 // Create a sprite
 /// Written by ???
 /*******************************************************/
-
+var GameTime = 15;
 var Score = 0;
 /*******************************************************/
 // setup()
@@ -28,6 +28,7 @@ function setup() {
 	wallBot.color = 'blue';
     wallBot.bounciness = 1;
     Coins();
+	
 }
 
 function displayScore(){
@@ -47,13 +48,31 @@ function draw() {
    
     
     }
-    textSize(35);
-    text("Timer:"+ Math.floor(millis()/1000 ), 50, 70);
-    fill('green');
 
     displayScore();
-    
+	
+	if(GameTime <= 0) {
+		if(Score < 80 ){
+			background('red');
+			text("YOU LOSE!!!!!!",500,500)
+			fill('black');
+		}
+		else {
+			background('green')
+			text("YOU WIN!!!!!",500,500);
+			fill('black');
+		}
+	}
+	else {
+		// run game
+		
+		textSize(35);
+		text("Timer:"+( GameTime - Math.floor(millis()/1000 )), 50, 70);
+		fill('green');
+	}
+		
 }
+
 
 function Coins() {
     coinGroup = new Group();
